@@ -150,7 +150,7 @@ top <- function(x) x$children[[1]]
 ##' @author Pete Dodd
 ##' @export
 savetreeplot <- function(tree, fn)
-  DiagrammeR::export_graph(data.tree::ToDiagrammeRGraph(tree),file_name=fn)
+  DiagrammeR::export_graph(data.tree::ToDiagrammeRGraph(tree), file_name=fn)
 
 
 
@@ -176,32 +176,35 @@ txt2tree <- function(x) top(MSorg2tree(here::here(x)))
 tree2file <- function(TREE, filename,...){
     tmp <- data.tree::ToDataFrameTree(TREE,...)
     tmp <- data.table::as.data.table(tmp)
-    data.table::fwrite(tmp,file=filename)
+    data.table::fwrite(tmp, file=filename)
 }
 
 
 ##' Append a number of results to data
 ##'
-##' @title Run results
-##' @param D the PSA data
-##' @param L a list of functions
-##' @param nmz an optional vector specifying a subset of the functions in \code{F} to run
+##' @param dat PSA data
+##' @param funs a list of functions
+##' @param nmz an optional vector specifying a subset of the functions in \code{funs} to run
 ##' @param verbose print what's happening (default=\code{TRUE})
 ##' @author Pete Dodd
 ##' @export
-appendResults <- function(D,L,nmz=NULL,verbose=TRUE){
+##' 
+appendResults <- function(dat, funs, nmz=NULL, verbose=TRUE){
   ## if not using nmz to specify
-  if(is.null(nmz)){
-    nmz <- names(L)
-    nmz <- gsub('fun$','',names(L))
+  if (is.null(nmz)) {
+    nmz <- names(funs)
+    nmz <- gsub('fun$','', names(funs))
     nmz <- nmz[nmz!='p'] #remove p if there
   }
-  ## loop
-  for(nm in nmz){
+
+  for (nm in nmz) {
     if(verbose) cat('Calculating answers for: ',nm,'\n')
+    
     fnm <- paste0(nm,'fun')
-    D[[nm]] <- L[[fnm]](D)
+    dat[[nm]] <- funs[[fnm]](dat)
   }
   if(verbose) cat('Done!\n')
-  D
+  
+  dat
 }
+

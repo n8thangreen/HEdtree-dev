@@ -94,21 +94,20 @@ CD <- read.csv(here::here('inst/Dx1.csv')) #the edited version
 Dx$Set(p=CD$p)
 Dx$Set(treatments=CD$treatments)
 
-print(Dx,'p','treatments')
+print(Dx,'p','treatments','deaths')
 ```
 
 ```{r}
 ## make functions
 qnts <- c('p','check','deaths','treatments')
-tree_fns <- makeTfuns(Dx,qnt=qnts)
+tree_fns <- makeTfuns(Dx, qnt=qnts)
 str(tree_fns)
 
 ## quantity example:
-getAQ(Dx,'deaths')
+getAQ(Dx, 'deaths')
 
 ## get the variables
-# (pmz <- showAllParmz(Dx))
-(pmz <- showParmz(Dx))
+(pmz <- showAllParmz(Dx))
 
 ##TODO: wheres this function?
 ## make test data
@@ -117,7 +116,16 @@ getAQ(Dx,'deaths')
 # 
 # tree_fns$checkfun(test)
 
+dat <-
+ data.frame(
+   p.screen = 1,
+   p.test = 1,
+   cfr.tx = 1,
+   cfr.notx = 1)
+
+tree_fns[[1]](dat)
+
 ## run all
-# test <- appendResults(test, tree_fns)
-# head(test)
+test <- appendResults(dat, tree_fns)
+head(test)
 ```

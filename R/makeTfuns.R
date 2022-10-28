@@ -10,12 +10,26 @@
 ##' @return A \code{list} of functions
 ##' @author Pete Dodd
 ##' @export
-##' 
-makeTfuns <- function(node, qnt=c('cost','qol')){
-  ss <- lapply(qnt, function(x) getAQ(node,x))
-  ss <- lapply(ss, function(x) parse(text=x))
-  ans <- lapply(ss, function(x) function(dat) eval(x,envir=dat))
-  names(ans) <- paste0(qnt,'fun')
-  ans
+##' @examples
+#' tree_fns <- makeTfuns(Dx, qnt=qnts)
+#' 
+#' dat <-
+#'   data.frame(
+#'     p.screen = 1,
+#'     p.test = 1,
+#'     cfr.tx = 1,
+#'     cfr.notx = 1))
+#'     
+#' tree_fns[[1]](dat)
+#' 
+makeTfuns <- function(node, qnt=c('cost','qol')) {
+  ans <- list()
+  
+  for (i in seq_along(qnt)) {
+    ss <- parse(text = getAQ(node, qnt[i]))
+    ans[[i]] <- function(dat) eval(ss, envir = dat)
+  }
+  
+  setNames(ans, paste0(qnt, 'fun'))
 }
 

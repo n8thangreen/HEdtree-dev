@@ -8,7 +8,7 @@ showtext_auto()
 
 sticker(
   "man/figures/head-tree.png",
-  package = "blendR",
+  package = "HEdtree",
   p_size = 20,
   s_x = 1,
   s_y = 0.8,

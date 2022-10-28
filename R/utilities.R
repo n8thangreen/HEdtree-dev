@@ -1,6 +1,7 @@
-##' Parameters for a lognormal distribution: mu & sdlog from median/mean and variance
+##' Parameters for a lognormal distribution
+##' 
+##' mu & sdlog from median/mean and variance.
 ##'
-##' @title Get parameters for a log-normal distribution
 ##' @param mid the midpoint of the distribution (median/mean depending on \code{med})
 ##' @param var the variance of the distribution
 ##' @param med logical to assume \code{mid} is median (default) or otherwise mean.
@@ -22,13 +23,12 @@ getLNparms <- function(mid,var,med=TRUE){
 
 ##' Parameters for a beta distribution: a & b from 
 ##'
-##' @title Get parameters for a beta distribution
 ##' @param E the mean
 ##' @param V the variance 
 ##' @return \code{list} containing a & b
 ##' @author Pete Dodd
 ##' @export
-getAB <- function(E,V){
+getAB <- function(E,V) {
     ## V <- (U-L)/4 #variance for uppers and lower
     sz <- E*(1-E)/V - 1
     a <- sz*E
@@ -36,19 +36,19 @@ getAB <- function(E,V){
     return(list(a=a,b=b))
 }
 
-##' Utility function to trim whitespace
+##' Utility function to trim white space
 ##'
-##' @title Trim whitespace
 ##' @param x 
 ##' @return string 
 ##' @author Pete Dodd
 ##' @export
-trm <- function(x)gsub(" ","",x)
+trm <- function(x) gsub(" ","",x)
 
+##' Get midpoint from CIs
+##' 
 ##' Utility function for extracting midpoint from bracketed uncertainty ranges
-##'
 ##' Expects something like M (Mlo,Mhi) or M (Mlo - Mhi) 
-##' @title Get midpoint from CIs
+##' 
 ##' @param x 
 ##' @return numeric
 ##' @author Pete Dodd
@@ -71,10 +71,11 @@ lopnt <- function(x){
   as.numeric(trm(x))
 }
 
+##' Get high point from CIs
+##' 
 ##' Utility function for extracting high point from bracketed uncertainty ranges
-##'
 ##' Expects something like M (Mlo,Mhi) or M (Mlo - Mhi) 
-##' @title Get high point from CIs
+##' 
 ##' @param x 
 ##' @return numeric
 ##' @author Pete Dodd
@@ -86,12 +87,11 @@ hipnt <- function(x){
 
 ##' Logit function
 ##'
-##' @title Logit function
 ##' @param x 
 ##' @return 
 ##' @author Pete Dodd
 ##' @export
-logit <- function(x)log(x/(1-x))
+logit <- function(x) log(x/(1 - x))
 
 ##' Inverse logit function
 ##'
@@ -100,7 +100,7 @@ logit <- function(x)log(x/(1-x))
 ##' @return 
 ##' @author Pete Dodd
 ##' @export
-ilogit <- function(x)exp(x)/(1+exp(x))
+ilogit <- function(x) exp(x)/(1 + exp(x))
 
 
 
@@ -108,7 +108,6 @@ ilogit <- function(x)exp(x)/(1+exp(x))
 
 ##' Merge a tree onto another by node name
 ##'
-##' @title Merge a tree onto another by node name
 ##' @param rootnode 
 ##' @param nodetoadd 
 ##' @param nodename 
@@ -117,6 +116,7 @@ ilogit <- function(x)exp(x)/(1+exp(x))
 ##' @return NULL
 ##' @author Pete Dodd
 ##' @export
+##' 
 MergeByName <- function (rootnode,
                          nodetoadd,
                          nodename,
@@ -136,7 +136,6 @@ MergeByName <- function (rootnode,
 
 ##' Ditch the top of tree on reading
 ##'
-##' @title Ditch the top of tree on reading
 ##' @param x 
 ##' @return 
 ##' @author Pete Dodd
@@ -145,39 +144,38 @@ top <- function(x) x$children[[1]]
 
 ##' Ditch the top of tree on reading
 ##'
-##' @title Ditch the top of tree on reading
 ##' @param tree tree to plot
 ##' @param fn file name
 ##' @return NULL
 ##' @author Pete Dodd
 ##' @export
-savetreeplot <- function(tree,fn)
+savetreeplot <- function(tree, fn)
   DiagrammeR::export_graph(data.tree::ToDiagrammeRGraph(tree),file_name=fn)
 
 
 
-##' Simpler text file to tree
-##'
-##' See also MSorg2tree
+##' Make a tree from a tsv
 ##' 
-##' @title Make a tree from a tsv
+##' Simpler text file to tree
+##' 
 ##' @param x filename relative to 'here'
 ##' @return A tree
 ##' @author Pete Dodd
 ##' @import here
+##' @seealso \code{MSorg2tree}
 ##' @export
 txt2tree <- function(x) top(MSorg2tree(here::here(x)))
 
 ##' Write a CSV tree with labels
 ##'
-##' @title Write a CSV tree with labels
 ##' @param TREE the tree
 ##' @param filename file to write to
 ##' @param ... label names to include
 ##' @author Pete Dodd
 ##' @export
-tree2file <- function(TREE,filename,...){
+tree2file <- function(TREE, filename,...){
     tmp <- data.tree::ToDataFrameTree(TREE,...)
     tmp <- data.table::as.data.table(tmp)
     data.table::fwrite(tmp,file=filename)
 }
+

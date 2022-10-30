@@ -1,4 +1,4 @@
-##' @title A plotter for decision tree models
+##' A plotter for decision tree models
 ##'
 ##' This is a simplified plotting utility that allows visual checking of decision tree models.
 ##' By default, the node names, costs, HRQoLs are displayed as well as the edge probabilities.

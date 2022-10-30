@@ -7,17 +7,18 @@
 orgAns0(inp, lvl, LVLS)
 }
 \arguments{
-\item{inp}{}
+\item{inp}{input}
 
-\item{lvl}{}
+\item{lvl}{level}
 
-\item{LVLS}{}
+\item{LVLS}{levels}
 }
 \value{
 A \code{list} of \code{list}s
 }
 \description{
-This does the work underlying \code{org2LoL} and \code{org2tree}. The function recursively evaluates to parse Emacs org-mode files.
+Does the work underlying \code{org2LoL} and \code{org2tree}.
+The function recursively evaluates to parse Emacs org-mode files.
 }
 \author{
 Pete Dodd

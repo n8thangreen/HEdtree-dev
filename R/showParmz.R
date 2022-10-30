@@ -50,15 +50,16 @@ showAllParmz <- function(TREE) {
 
 ##' Makes a dummy PSA dataset based on a set of parameters for function testing
 ##'
-##' @param ncheck
-##' @param vnames 
+##' @param ncheck Number check
+##' @param vnames Vector of names
 ##' @return \code{data.frame} of dummy PSA for testing tree functions
 ##' @author Pete Dodd
+##' @importFrom data.table data.table
 ##' @export
 makeTestData <- function(ncheck, vnames){
-  A <- data.table::data.table(vnames,value=runif(length(vnames)))
-  A <- A[rep(1:length(vnames),each=ncheck)]
-  idz <- rep(1:ncheck,length(vnames))
+  A <- data.table::data.table(vnames, value = runif(length(vnames)))
+  A <- A[rep(1:length(vnames), each = ncheck)]
+  idz <- rep(1:ncheck, length(vnames))
   A$id <- idz
   A$value <- runif(nrow(A))
   data.table::dcast(A, id ~ vnames, value.var = 'value')

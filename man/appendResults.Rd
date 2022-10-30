@@ -2,16 +2,16 @@
 % Please edit documentation in R/utilities.R
 \name{appendResults}
 \alias{appendResults}
-\title{Run results}
+\title{Append a number of results to data}
 \usage{
-appendResults(D, L, nmz = NULL, verbose = TRUE)
+appendResults(dat, funs, nmz = NULL, verbose = TRUE)
 }
 \arguments{
-\item{D}{the PSA data}
+\item{dat}{PSA data}
 
-\item{L}{a list of functions}
+\item{funs}{a list of functions}
 
-\item{nmz}{an optional vector specifying a subset of the functions in \code{F} to run}
+\item{nmz}{an optional vector specifying a subset of the functions in \code{funs} to run}
 
 \item{verbose}{print what's happening (default=\code{TRUE})}
 }

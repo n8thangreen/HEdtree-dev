@@ -53,7 +53,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/example.html">Example</a>
+      <a href="../articles/example.html">Basic Example</a>
     </li>
   </ul>
 </li>
@@ -75,7 +75,7 @@
       <h1 data-toc-skip>Overview of HEdtree</h1>
                         <h4 data-toc-skip class="author">P.J Dodd</h4>
             
-            <h4 data-toc-skip class="date">2022-10-28</h4>
+            <h4 data-toc-skip class="date">2022-10-30</h4>
       
       
       <div class="hidden name"><code>HEdtree.Rmd</code></div>
@@ -174,12 +174,12 @@ data.frame</p>
 <span></span>
 <span><span class="co">## evaluate</span></span>
 <span><span class="va">H</span><span class="op">$</span><span class="fu">costfun</span><span class="op">(</span><span class="va">psadf</span><span class="op">)</span>                        <span class="co">#return answers</span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1] 1.9539622 2.5566470 1.0812276 0.4026001 1.7085697 0.2584138 2.7532450</span></span>
-<span><span class="co">##  [8] 1.9694786 0.9395804 0.7489278</span></span></code></pre>
+<pre><code><span><span class="co">##  [1] 2.394601 1.140540 1.607608 2.260669 1.431916 1.444424 1.793441 0.903889</span></span>
+<span><span class="co">##  [9] 1.468674 1.592583</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">H</span><span class="op">$</span><span class="fu">qolfun</span><span class="op">(</span><span class="va">psadf</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1] 1.9539622 2.5566470 1.0812276 0.4026001 1.7085697 0.2584138 2.7532450</span></span>
-<span><span class="co">##  [8] 1.9694786 0.9395804 0.7489278</span></span></code></pre>
+<pre><code><span><span class="co">##  [1] 2.394601 1.140540 1.607608 2.260669 1.431916 1.444424 1.793441 0.903889</span></span>
+<span><span class="co">##  [9] 1.468674 1.592583</span></span></code></pre>
 <div class="section level3">
 <h3 id="use-of-functions">Use of functions<a class="anchor" aria-label="anchor" href="#use-of-functions"></a>
 </h3>
@@ -191,8 +191,8 @@ higher-level environments, e.g.</p>
 <span><span class="va">psadf</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">psadf</span><span class="op">)</span>      <span class="co">#add an age in </span></span>
 <span><span class="va">H</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeTfuns.html">makeTfuns</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>                   <span class="co">#remake the functions</span></span>
 <span><span class="va">H</span><span class="op">$</span><span class="fu">costfun</span><span class="op">(</span><span class="va">psadf</span><span class="op">)</span>                        <span class="co">#test </span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1] 1.8359881 2.6512008 1.0912107 0.4826250 1.7102968 0.2621705 2.9992346</span></span>
-<span><span class="co">##  [8] 1.9703285 0.9556304 0.8023687</span></span></code></pre>
+<pre><code><span><span class="co">##  [1] 2.4472883 1.3728399 1.6182191 2.3448794 1.4818719 1.6294467 2.4554468</span></span>
+<span><span class="co">##  [8] 0.9551311 1.9174037 1.5971770</span></span></code></pre>
 <p>Note: this example also illustrates how one can include individual
 characteristics from a population and use them to influence their
 outcomes.</p>
@@ -204,12 +204,12 @@ outcomes.</p>
 <p>Plotting to a web browser can be achieved by</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotter.html">plotter</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span></span></code></pre></div>
-<div id="htmlwidget-b4d9969e247c9dc29695" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4d9969e247c9dc29695">{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\"]\n\n\n\n  \"1\" [label = \"mytree\nmyc\nmyq\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Option A\nac\naq\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Option A1\na1c\na1q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Option A2\na2c\na2q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Option B\nbc\nbq\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Option B1\nb1c\nb1q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Option B2\nb2c\nb2q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [fontname = \"helvetica\", label = \"ap\"] \n\"1\"->\"5\" [fontname = \"helvetica\", label = \"bp\"] \n\"2\"->\"3\" [fontname = \"helvetica\", label = \"accpfun(age)\"] \n\"2\"->\"4\" [fontname = \"helvetica\", label = \"a2p\"] \n\"5\"->\"6\" [fontname = \"helvetica\", label = \"b1p\"] \n\"5\"->\"7\" [fontname = \"helvetica\", label = \"b2p\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If fewer/more labels are needed, this can be achieved using</p>
+<div id="htmlwidget-73dbe7d684796a055651" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-73dbe7d684796a055651">{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\"]\n\n\n\n  \"1\" [label = \"mytree\nmyc\nmyq\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Option A\nac\naq\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Option A1\na1c\na1q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Option A2\na2c\na2q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Option B\nbc\nbq\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Option B1\nb1c\nb1q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Option B2\nb2c\nb2q\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [fontname = \"helvetica\", label = \"ap\"] \n\"1\"->\"5\" [fontname = \"helvetica\", label = \"bp\"] \n\"2\"->\"3\" [fontname = \"helvetica\", label = \"accpfun(age)\"] \n\"2\"->\"4\" [fontname = \"helvetica\", label = \"a2p\"] \n\"5\"->\"6\" [fontname = \"helvetica\", label = \"b1p\"] \n\"5\"->\"7\" [fontname = \"helvetica\", label = \"b2p\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If fewer/more labels are needed, this can be achieved using</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotter.html">plotter</a></span><span class="op">(</span><span class="va">myt</span>,varz<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'name'</span><span class="op">)</span>,edgelabel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div id="htmlwidget-b4cf42a203699492ce56" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4cf42a203699492ce56">{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\"]\n\n\n\n  \"1\" [label = \"mytree\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Option A\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Option A1\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Option A2\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Option B\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Option B1\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Option B2\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"1\"->\"5\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"2\"->\"3\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"2\"->\"4\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"5\"->\"6\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"5\"->\"7\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If further formatting or I/O is required,
+<div id="htmlwidget-f5f0a5fd3ba8814d7f60" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f5f0a5fd3ba8814d7f60">{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\"]\n\n\n\n  \"1\" [label = \"mytree\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Option A\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Option A1\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Option A2\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Option B\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Option B1\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Option B2\", fontname = \"helvetica\", shape = \"box\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"1\"->\"5\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"2\"->\"3\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"2\"->\"4\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"5\"->\"6\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n\"5\"->\"7\" [fontname = \"helvetica\", fontname = \"helvetica\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If further formatting or I/O is required,
 <code>ToDiagrammeRGraph</code> exports the graph as a
 <code>DiagrammeR</code> object (see package of the same name). Or just
 assign the return value to some variable, e.g. <code>test</code>,

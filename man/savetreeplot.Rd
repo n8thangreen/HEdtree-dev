@@ -4,12 +4,12 @@
 \alias{savetreeplot}
 \title{Ditch the top of tree on reading}
 \usage{
-savetreeplot(tree, fn)
+savetreeplot(tree, filename)
 }
 \arguments{
 \item{tree}{tree to plot}
 
-\item{fn}{file name}
+\item{filename}{string}
 }
 \description{
 Ditch the top of tree on reading

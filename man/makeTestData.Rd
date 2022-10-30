@@ -2,18 +2,20 @@
 % Please edit documentation in R/showParmz.R
 \name{makeTestData}
 \alias{makeTestData}
-\title{List parameters in model}
+\title{Makes a dummy PSA dataset based on a set of parameters for function testing}
 \usage{
 makeTestData(ncheck, vnames)
 }
 \arguments{
-\item{node}{}
+\item{ncheck}{Number check}
+
+\item{vnames}{Vector of names}
 }
 \value{
 \code{data.frame} of dummy PSA for testing tree functions
 }
 \description{
-This function makes a dummy PSA dataset based on a set of parameters for function testing
+Makes a dummy PSA dataset based on a set of parameters for function testing
 }
 \author{
 Pete Dodd

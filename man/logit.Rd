@@ -7,10 +7,10 @@
 logit(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{Probability}
 }
 \value{
-
+Number on real line
 }
 \description{
 Logit function

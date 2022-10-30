@@ -2,7 +2,7 @@
 % Please edit documentation in R/showParmz.R
 \name{showParmz}
 \alias{showParmz}
-\title{List parameters in model}
+\title{Fetches the parameters used in the model (and prints them)}
 \usage{
 showParmz(node, parmz = c("cost", "p", "qol"))
 }
@@ -15,7 +15,8 @@ showParmz(node, parmz = c("cost", "p", "qol"))
 \code{list} of length 2: unique basic parameters & unique calculation-defined parameters
 }
 \description{
-This function just fetches the parameters used in the model (and prints them). It separates those which are basic and require separate definition from those that are specified via calculations.
+It separates those which are basic and require separate definition
+from those that are specified via calculations.
 }
 \author{
 Pete Dodd

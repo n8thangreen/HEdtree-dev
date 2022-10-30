@@ -2,20 +2,20 @@
 % Please edit documentation in R/utilities.R
 \name{getAB}
 \alias{getAB}
-\title{Get parameters for a beta distribution}
+\title{Parameters for a beta distribution}
 \usage{
 getAB(E, V)
 }
 \arguments{
-\item{E}{the mean}
+\item{E}{Mean}
 
-\item{V}{the variance}
+\item{V}{Variance}
 }
 \value{
-\code{list} containing a & b
+\code{list} containing a & b parameter values
 }
 \description{
-Parameters for a beta distribution: a & b from
+Parameters for a beta distribution
 }
 \author{
 Pete Dodd

@@ -8,136 +8,97 @@
 ##' @return \code{list} mu, sig being mu and sdlog for lognormal distribution
 ##' @author Pete Dodd
 ##' @export
-getLNparms <- function(mid,var,med=TRUE){
-  if(med){
+getLNparms <- function(mid, var, med = TRUE) {
+  if (med) {
     mu <- log(mid)                      #mid as median
-    x <- (1+sqrt(1+4*var/mid^2))/2
-    ans <- list(mu=mu,sig=sqrt(log(x)))
+    x <- (1 + sqrt(1 + 4*var/mid^2))/2
+    return(list(mu = mu,
+                sig = sqrt(log(x))))
   } else {
-    s2 <- log(1+var/mid^2)
+    s2 <- log(1 + var/mid^2)
     mu <- log(mid) - s2/2
-    ans <- list(mu=mu,sig=sqrt(s2))
+    return(list(mu = mu,
+                sig = sqrt(s2)))
   }
-  ans
 }
 
-##' Parameters for a beta distribution: a & b from 
+##' Parameters for a beta distribution
 ##'
-##' @param E the mean
-##' @param V the variance 
-##' @return \code{list} containing a & b
+##' @param E Mean
+##' @param V Variance 
+##' @return \code{list} containing a & b parameter values
 ##' @author Pete Dodd
 ##' @export
 getAB <- function(E,V) {
-    ## V <- (U-L)/4 #variance for uppers and lower
-    sz <- E*(1-E)/V - 1
-    a <- sz*E
-    b <- sz*(1-E)
-    return(list(a=a,b=b))
+  ## V <- (U-L)/4 #variance for uppers and lower
+  sz <- E*(1 - E)/V - 1
+  a <- sz*E
+  b <- sz*(1 - E)
+  list(a = a, b = b)
 }
 
 ##' Utility function to trim white space
 ##'
-##' @param x 
+##' @param x string
 ##' @return string 
 ##' @author Pete Dodd
 ##' @export
-trm <- function(x) gsub(" ","",x)
+trm <- function(x) gsub(" ", "", x)
 
-##' Get midpoint from CIs
-##' 
-##' Utility function for extracting midpoint from bracketed uncertainty ranges
-##' Expects something like M (Mlo,Mhi) or M (Mlo - Mhi) 
-##' 
-##' @param x 
-##' @return numeric
-##' @author Pete Dodd
-##' @export
-midpnt <- function(x){
-  x <- gsub("(.?)\\(.*","\\1",x,perl=TRUE)
-  as.numeric(trm(x))
-}
-
-##' Utility function for extracting low point from bracketed uncertainty ranges
-##'
-##' Expects something like M (Mlo,Mhi) or M (Mlo - Mhi) 
-##' @title Get low point from CIs
-##' @param x 
-##' @return numeric 
-##' @author Pete Dodd
-##' @export
-lopnt <- function(x){
-  x <- gsub(".*\\((.*?)[,|-].*","\\1",x,perl=TRUE)
-  as.numeric(trm(x))
-}
-
-##' Get high point from CIs
-##' 
-##' Utility function for extracting high point from bracketed uncertainty ranges
-##' Expects something like M (Mlo,Mhi) or M (Mlo - Mhi) 
-##' 
-##' @param x 
-##' @return numeric
-##' @author Pete Dodd
-##' @export
-hipnt <- function(x){
-  x <- gsub(".*[,|-](.*?)\\).*","\\1",x,perl=TRUE)
-  as.numeric(trm(x))
-}
 
 ##' Logit function
 ##'
-##' @param x 
-##' @return 
+##' @param x Probability
+##' @return Number on real line
 ##' @author Pete Dodd
 ##' @export
-logit <- function(x) log(x/(1 - x))
+logit <- function(x) log(x) - log(1 - x)
 
 ##' Inverse logit function
 ##'
-##' @title Inverse logit function
-##' @param x 
-##' @return 
+##' @param x Real number
+##' @return Probability
 ##' @author Pete Dodd
 ##' @export
 ilogit <- function(x) exp(x)/(1 + exp(x))
 
 
 
-## ======== tree manipulation utility functions ========
+# tree manipulation utility functions -------------------------------------
+
 
 ##' Merge a tree onto another by node name
 ##'
-##' @param rootnode 
-##' @param nodetoadd 
-##' @param nodename 
-##' @param usecase Match case in nodename? (must be TRUE currently)
-##' @param leavesonly Merge only onto leaves? 
+##' @param rootnode Root node
+##' @param nodetoadd Node to add
+##' @param nodename Node name
+##' @param usecase Match case in \code{nodename}? (must be \code{TRUE} currently)
+##' @param leavesonly Merge only onto leaves? Logical
 ##' @return NULL
 ##' @author Pete Dodd
 ##' @export
 ##' 
-MergeByName <- function (rootnode,
-                         nodetoadd,
-                         nodename,
-                         usecase = TRUE,
-                         leavesonly = FALSE) {
-    if(!leavesonly){
-        rootnode$Do(function(node)
-            for (K in nodetoadd$children) node$AddChildNode(Clone(K)),
-            filterFun = function(x) (x$name == nodename) )
-    } else {
-        rootnode$Do(function(node)
-            for (K in nodetoadd$children) node$AddChildNode(Clone(K)),
-            filterFun = function(x) (x$name == nodename) && x$isLeaf )
-    }
-    ## by side-effect
+MergeByName <- function(rootnode,
+                        nodetoadd,
+                        nodename,
+                        usecase = TRUE,
+                        leavesonly = FALSE) {
+  if (!leavesonly) {
+    rootnode$Do(function(node)
+      for (K in nodetoadd$children) node$AddChildNode(Clone(K)),
+      filterFun = function(x) (x$name == nodename))
+  } else {
+    rootnode$Do(function(node)
+      for (K in nodetoadd$children) node$AddChildNode(Clone(K)),
+      filterFun = function(x) (x$name == nodename) && x$isLeaf)
+  }
+  ## by side-effect
 }
 
-##' Ditch the top of tree on reading
+##' Drop the top of tree on reading
 ##'
-##' @param x 
-##' @return 
+##' @param x data.tree object
+##' @return data.tree object 
 ##' @author Pete Dodd
 ##' @export
 top <- function(x) x$children[[1]]
@@ -145,38 +106,40 @@ top <- function(x) x$children[[1]]
 ##' Ditch the top of tree on reading
 ##'
 ##' @param tree tree to plot
-##' @param fn file name
+##' @param filename string
 ##' @return NULL
 ##' @author Pete Dodd
+##' @importFrom data.tree ToDiagrammeRGraph
+##' @importFrom DiagrammeR export_graph
 ##' @export
-savetreeplot <- function(tree, fn)
-  DiagrammeR::export_graph(data.tree::ToDiagrammeRGraph(tree), file_name=fn)
-
+savetreeplot <- function(tree, filename)
+  DiagrammeR::export_graph(
+    data.tree::ToDiagrammeRGraph(tree), file_name = filename)
 
 
 ##' Make a tree from a tsv
 ##' 
 ##' Simpler text file to tree
 ##' 
-##' @param x filename relative to 'here'
+##' @param filename relative to 'here'
 ##' @return A tree
 ##' @author Pete Dodd
-##' @import here
+##' @importFrom here here
 ##' @seealso \code{MSorg2tree}
 ##' @export
-txt2tree <- function(x) top(MSorg2tree(here::here(x)))
+txt2tree <- function(filename) top(MSorg2tree(here::here(filename)))
 
 ##' Write a CSV tree with labels
 ##'
 ##' @param TREE the tree
 ##' @param filename file to write to
-##' @param ... label names to include
+##' @param ... Additional arguments passed to \code{ToDataFrameTree}. Label names to include
 ##' @author Pete Dodd
 ##' @export
 tree2file <- function(TREE, filename,...){
-    tmp <- data.tree::ToDataFrameTree(TREE,...)
-    tmp <- data.table::as.data.table(tmp)
-    data.table::fwrite(tmp, file=filename)
+  tmp <- data.tree::ToDataFrameTree(TREE,...)
+  tmp <- data.table::as.data.table(tmp)
+  data.table::fwrite(tmp, file = filename)
 }
 
 
@@ -189,21 +152,21 @@ tree2file <- function(TREE, filename,...){
 ##' @author Pete Dodd
 ##' @export
 ##' 
-appendResults <- function(dat, funs, nmz=NULL, verbose=TRUE){
+appendResults <- function(dat, funs, nmz = NULL, verbose = TRUE){
   ## if not using nmz to specify
   if (is.null(nmz)) {
     nmz <- names(funs)
     nmz <- gsub('fun$','', names(funs))
-    nmz <- nmz[nmz!='p'] #remove p if there
+    nmz <- nmz[nmz != 'p'] #remove p if there
   }
-
+  
   for (nm in nmz) {
-    if(verbose) cat('Calculating answers for: ',nm,'\n')
+    if (verbose) cat('Calculating answers for: ',nm,'\n')
     
-    fnm <- paste0(nm,'fun')
+    fnm <- paste0(nm, 'fun')
     dat[[nm]] <- funs[[fnm]](dat)
   }
-  if(verbose) cat('Done!\n')
+  if (verbose) cat('Done!\n')
   
   dat
 }

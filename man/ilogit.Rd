@@ -7,10 +7,10 @@
 ilogit(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{Real number}
 }
 \value{
-
+Probability
 }
 \description{
 Inverse logit function

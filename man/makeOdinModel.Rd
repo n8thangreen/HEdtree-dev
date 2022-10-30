@@ -2,7 +2,7 @@
 % Please edit documentation in R/makeOdinmodel.R
 \name{makeOdinModel}
 \alias{makeOdinModel}
-\title{Making Odin ODEs from tree}
+\title{Make Odin ODEs from tree}
 \usage{
 makeOdinModel(
   tree,
@@ -30,7 +30,7 @@ makeOdinModel(
 list
 }
 \description{
-Making Odin ODEs from tree
+Make Odin ODEs from tree
 }
 \author{
 Pete Dodd

@@ -30,13 +30,14 @@ parse.parmtable(
 \code{list} of functions for RV computations and associated names
 }
 \description{
-This function is designed to simplify the workflow by allowing specification of parameters/priors in an external CSV file following certain conventions.
+This function is designed to simplify the workflow by allowing specification
+of parameters/priors in an external CSV file following certain conventions.
 }
 \details{
 Work in progress: need to add other distributions; testing functionality etc
+}
+\section{The following distributions are handled}{
 
-
-The following distributions are handled:
 
 \itemize{
  \item{"Normal"}{defined as \code{N(mean,sd)}}
@@ -47,6 +48,7 @@ The following distributions are handled:
 
 TODO document & expand inputs below,
 }
+
 \examples{
 tst <- parse.parmtable(data.frame(parm=c('blah','nla'),dist=c('LN(2,3)','N(2,3)')))
 tst[[1]]$r(10)

@@ -4,16 +4,21 @@
 \alias{org2tree}
 \title{Emacs org-mode file to \code{data.tree} tree}
 \usage{
-org2tree(fn)
+org2tree(filename)
 }
 \arguments{
-\item{fn}{the filename}
+\item{filename}{string}
 }
 \value{
 A \code{data.tree} tree object
 }
 \description{
-This function reads and Emacs org-mode file and generates a \code{data.tree} tree object. This enables rapid specification of and experimentation with tree logics. Different levels of the hierarchy as specified by the number of asterisks the line begins with (a space must follow the asterisks). Emacs provides folding and other tools for rapidly editing org-mode files.
+This function reads and Emacs org-mode file and generates
+a \code{data.tree} tree object. This enables rapid specification
+of and experimentation with tree logics. Different levels of the
+hierarchy as specified by the number of asterisks the line begins
+with (a space must follow the asterisks). Emacs provides folding
+and other tools for rapidly editing org-mode files.
 }
 \author{
 Pete Dodd

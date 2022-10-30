@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# HEdtree <img src='man/figures/hexbadge.png' align="right" height="139" />
+# HEdtree <img src='man/figures/hexbadge.png' style="float:right; height:200px;">
 
 <!-- badges: start -->
 <!-- badges: end -->

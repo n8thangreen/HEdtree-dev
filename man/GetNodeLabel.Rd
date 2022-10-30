@@ -2,7 +2,8 @@
 % Please edit documentation in R/GetLabels.R
 \name{GetNodeLabel}
 \alias{GetNodeLabel}
-\title{Labelling utilities}
+\title{two labelling functions to label edges and nodes used by \code{plotter}.
+Labelling utilities}
 \usage{
 GetNodeLabel(node, varz = c("name", "cost", "qol"))
 }
@@ -15,7 +16,8 @@ GetNodeLabel(node, varz = c("name", "cost", "qol"))
 \code{string} to be used as label
 }
 \description{
-These are two labelling functions to label edges and nodes used by \code{plotter}.
+two labelling functions to label edges and nodes used by \code{plotter}.
+Labelling utilities
 }
 \author{
 Pete Dodd

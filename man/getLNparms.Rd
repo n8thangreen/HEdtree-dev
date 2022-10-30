@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{getLNparms}
 \alias{getLNparms}
-\title{Get parameters for a log-normal distribution}
+\title{Parameters for a lognormal distribution}
 \usage{
 getLNparms(mid, var, med = TRUE)
 }
@@ -17,7 +17,7 @@ getLNparms(mid, var, med = TRUE)
 \code{list} mu, sig being mu and sdlog for lognormal distribution
 }
 \description{
-Parameters for a lognormal distribution: mu & sdlog from median/mean and variance
+mu & sdlog from median/mean and variance.
 }
 \author{
 Pete Dodd

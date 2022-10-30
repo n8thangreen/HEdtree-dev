@@ -2,18 +2,18 @@
 % Please edit documentation in R/utilities.R
 \name{trm}
 \alias{trm}
-\title{Trim whitespace}
+\title{Utility function to trim white space}
 \usage{
 trm(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{string}
 }
 \value{
 string
 }
 \description{
-Utility function to trim whitespace
+Utility function to trim white space
 }
 \author{
 Pete Dodd

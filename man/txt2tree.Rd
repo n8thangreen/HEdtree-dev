@@ -4,10 +4,10 @@
 \alias{txt2tree}
 \title{Make a tree from a tsv}
 \usage{
-txt2tree(x)
+txt2tree(filename)
 }
 \arguments{
-\item{x}{filename relative to 'here'}
+\item{filename}{relative to 'here'}
 }
 \value{
 A tree
@@ -15,8 +15,8 @@ A tree
 \description{
 Simpler text file to tree
 }
-\details{
-See also MSorg2tree
+\seealso{
+\code{MSorg2tree}
 }
 \author{
 Pete Dodd

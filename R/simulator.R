@@ -21,26 +21,28 @@ simulate <- function(tree,              #tree
   nk <- length(tree$children)
   if (nk>0) {
     pz <- rep(0,nk)
-    for (i in 1:nk) {
+    for (i in seq_len(nk)) {
       txt <- tree$children[[i]]$p
-      pz[i] <- eval(parse(text=txt),envir=P)
+      pz[i] <- eval(parse(text=txt), envir=P)
     }
     Nz <- c(rmultinom(1,N,pz))          #how many flow into each branch
-    for (i in 1:nk) {
+    for (i in seq_len(nk)) {
       simulate(tree$children[[i]],Nz[i],P)
     }
   }
 }
 
-#'
+#' runningprobs0
+#' 
+#' @param tree data.tree object
+#' @param rp probability
+#' 
 runningprobs0 <- function(tree,rp) {
   txt <- paste0("(",rp,")*(",tree$p,")")
   tree$runningprob <- txt
   nk <- length(tree$children)
-  if (nk>0) {
-    for (i in 1:nk) {
-      runningprobs0(tree$children[[i]],txt)
-    }
+  for (i in seq_len(nk)) {
+    runningprobs0(tree$children[[i]],txt)
   }
 }
 
@@ -53,9 +55,8 @@ runningprobs0 <- function(tree,rp) {
 runningprobs <- function(tree) {
   tree$runningprob <- '1'
   nk <- length(tree$children)
-  if (nk>0) {
-    for (i in 1:nk) {
-      runningprobs0(tree$children[[i]],1)
-    }
+  for (i in seq_len(nk)) {
+    runningprobs0(tree$children[[i]],1)
   }
 }
+

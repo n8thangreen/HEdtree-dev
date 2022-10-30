@@ -2,7 +2,7 @@
 % Please edit documentation in R/makePSA.R
 \name{makePSA}
 \alias{makePSA}
-\title{Make PSA data.table from parameter object}
+\title{Facilitates generating a PSA data.table object from a parameter object}
 \usage{
 makePSA(N, P, dbls = list())
 }
@@ -11,13 +11,14 @@ makePSA(N, P, dbls = list())
 
 \item{P}{parameter object (eg from parse.parmtable)}
 
-\item{dbls}{list of 2-D name vectors for any parameter pairs generated jointly (same order as in \code{P})}
+\item{dbls}{list of 2-D named vectors for any parameter pairs generated
+jointly (same order as in \code{P})}
 }
 \value{
-\code{data.table}
+\code{data.table} object
 }
 \description{
-This function facilitates generating a PSA data.table object from a parameter object
+Facilitates generating a PSA data.table object from a parameter object
 }
 \author{
 Pete Dodd

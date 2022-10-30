@@ -4,16 +4,18 @@
 \alias{org2LoL}
 \title{Emacs org-mode file to list-of-lists}
 \usage{
-org2LoL(fn)
+org2LoL(filename)
 }
 \arguments{
-\item{fn}{the filename}
+\item{filename}{string}
 }
 \value{
 A \code{list} of \code{list}s
 }
 \description{
-This function reads and Emacs org-mode file and generates a list-of-lists. This is used primarily as an intermediate: \code{org2tree} returns a \code{data.tree} directly.
+This function reads and Emacs org-mode file and generates a list-of-lists.
+This is used primarily as an intermediate: \code{org2tree} returns a
+\code{data.tree} directly.
 }
 \author{
 Pete Dodd

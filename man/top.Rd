@@ -2,18 +2,18 @@
 % Please edit documentation in R/utilities.R
 \name{top}
 \alias{top}
-\title{Ditch the top of tree on reading}
+\title{Drop the top of tree on reading}
 \usage{
 top(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{data.tree object}
 }
 \value{
-
+data.tree object
 }
 \description{
-Ditch the top of tree on reading
+Drop the top of tree on reading
 }
 \author{
 Pete Dodd

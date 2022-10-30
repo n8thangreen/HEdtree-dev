@@ -25,6 +25,9 @@
     <loc>/reference/appendResults.html</loc>
   </url>
   <url>
+    <loc>/reference/ci_points.html</loc>
+  </url>
+  <url>
     <loc>/reference/getAB.html</loc>
   </url>
   <url>
@@ -89,6 +92,9 @@
   </url>
   <url>
     <loc>/reference/runningprobs.html</loc>
+  </url>
+  <url>
+    <loc>/reference/runningprobs0.html</loc>
   </url>
   <url>
     <loc>/reference/savetreeplot.html</loc>

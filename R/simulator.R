@@ -1,5 +1,5 @@
 
-##' @title Simulate numbers on the tree
+##' Simulate numbers on the tree
 ##'
 ##' This is for simulating numbers from studies.
 ##' The tree can be converted afterwards with something like

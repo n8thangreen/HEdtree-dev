@@ -1,4 +1,5 @@
-##' @title Making Odin ODEs from tree
+##' Make Odin ODEs from tree
+##' 
 ##' @param tree input tree
 ##' @param rootname base for naming convention
 ##' @param rootinflow if adding a flow in from existing model
@@ -14,23 +15,24 @@ makeOdinModel <- function(tree,
                           dimensions=c(),   #dimensions of arrays
                           times.array=FALSE,#are times arrays as well?
                           quants=c()        #rates to compute
-                          ){
+) {
   ## add aliased names: should work by side-effect on tree
   tree$Set(oname=rootname)
-  tree$Do(function(node) if(!node$isLeaf){
-                         for(i in 1:node$count)
-                           node$children[[i]]$oname <- paste(node$oname,i,
-                                                             sep='.')
-                         })
-
+  tree$Do(function(node) if (!node$isLeaf) {
+    for (i in 1:node$count)
+      node$children[[i]]$oname <- paste(node$oname,i,
+                                        sep='.')
+  })
+  
   ## dimension prep stuff
   L <- length(dimensions)
   brkts <- fbrkts <- fbrktsT <- ''
-  if(L>0){
+  if (L>0) {
     inmz <- c('i','j','k',paste0('i',1:5)) #TODO check
     ## bits for empty brackets
-    if(L>1)
+    if (L>1)
       brkts <- rep(',',L-1)
+    
     brkts <- paste(brkts,collapse='')
     brkts <- paste0('[',brkts,']')
     ## bits for full brackets
@@ -42,7 +44,7 @@ makeOdinModel <- function(tree,
     dmz <- paste(dimensions,collapse = ',')
     dmz <- paste0('c(',dmz,')')
   }
-
+  
   ## grab parameters
   tmp <- showParmz(tree,parmz=c('p','T'))
   pmz <- tmp$vars #TODO this needs correcting no ltfu2.3
@@ -53,12 +55,11 @@ makeOdinModel <- function(tree,
   ditch <- grepl("^[0-9]+$", tmp, perl = TRUE)
   tmp <- tmp[!ditch]
   pmz <- unique(c(pmz,tmp))
-
-
+  
   ## extract relevant structure
   DF <- as.data.table(ToDataFrameNetwork(tree$root,'p','T','oname'))
-  if(length(quants)>0){
-    for(qn in quants){
+  if (length(quants)>0) {
+    for (qn in quants) {
       tmp <- as.data.table(ToDataFrameNetwork(tree$root,'oname',qn))
       bname <- c('oname',qn)
       tmp <- tmp[,..bname]
@@ -74,18 +75,19 @@ makeOdinModel <- function(tree,
               by='to',all.x=TRUE)
   ## in rate strings
   DF[,inrates:=paste0(oname,fbrkts,'*(',op,')/(',T,fbrktsT,')')]
-
+  
   ## make in rates in right place and initial
   DFU <- unique(DF[,.(oname)])
   DFU[,inits:=paste0('initial(',oname,brkts,') <- 0')]
-  DFU <- merge(DFU,DF[T!=0,.(oname=onameto,inrates)],
-               by='oname',all.x = TRUE)
-  DFU[is.na(inrates),inrates:='0']
-  DFU[oname==rootname,inrates:=rootinflow]
-
-  ## add brackets to inrates
-  if(L>0){
-     for(pn in ntnmz){
+  DFU <- merge(x = DFU,
+               y = DF[T!=0,.(oname=onameto,inrates)],
+               by = 'oname',all.x = TRUE)
+  DFU[is.na(inrates), inrates:='0']
+  DFU[oname==rootname, inrates:=rootinflow]
+  
+  ## add brackets to in rates
+  if (L>0) {
+    for (pn in ntnmz) {
       fs <- paste0("\\b",pn,"\\b")
       fr <- paste0(pn,fbrkts)
       DFU[,inrates:=gsub(fs,fr,inrates)]
@@ -96,44 +98,43 @@ makeOdinModel <- function(tree,
   DF[,outrates:=paste0(oname,fbrkts,'/(',T,fbrktsT,')')]
   DFU <- merge(DFU,unique(DF[T!=0,.(oname,outrates)]),by='oname',all.x=TRUE)
   DFU[is.na(outrates),outrates:='0']
-
-
+  
   ## finalize dynamics
   DFU[,dyx:=paste0('deriv(',oname,brkts,') <- ',inrates,' - ',outrates)]
-
+  
   ## keep the tree path/names
   DFU <- merge(DFU,hsh[,.(oname,from)],by='oname',all.x=TRUE)
-
+  
   ## dimz bit
   dmzbit <- NULL
-  if(L>0){
+  if (L>0) {
     ## parameters
-    for(pn in ntnmz){
+    for (pn in ntnmz) {
       tmp <- paste0('dim(',pn,') <- ',dmz)
       dmzbit <- c(dmzbit,tmp)
     }
-    if(times.array){
-      for(pn in tnmz){
+    if (times.array) {
+      for (pn in tnmz) {
         tmp <- paste0('dim(',pn,') <- ',dmz)
         dmzbit <- c(dmzbit,tmp)
       }
     }
     ## variables
-    for(vn in DFU[,unique(oname)]){
-        tmp <- paste0('dim(',vn,') <- ',dmz)
-        dmzbit <- c(dmzbit,tmp)
+    for (vn in DFU[,unique(oname)]) {
+      tmp <- paste0('dim(',vn,') <- ',dmz)
+      dmzbit <- c(dmzbit,tmp)
     }
   }
   
   ## input bit
   imp1 <- paste0(ntnmz,brkts,' <- user()')
-  if(times.array){
+  if (times.array) {
     imp2 <- paste0(tnmz,brkts,' <- user()')
   } else {
-      imp2 <- paste0(tnmz,' <- user()')
+    imp2 <- paste0(tnmz,' <- user()')
   }
   imp <- c(imp1,imp2)
-
+  
   ## quantities calculator 
   ## NOTE also needs to be array
   qntz <- NULL
@@ -150,24 +151,28 @@ makeOdinModel <- function(tree,
       tmp3b <- unlist(DFU[,..qn])
       tmp3c <- paste0('* ',DFU[,inrates])
       tmp3 <- paste0(tmp3a,paste(tmp3b,tmp3c,collapse = '+'))
-      if(L>0){
+      if (L>0) {
         tmp4 <- paste0('dim(',qn,') <- ',dmz )
-      } else {tmp4 <- NULL;}
+      } else {
+        tmp4 <- NULL}
       ## declare cost vars 
-      if(length(qnmz)>0){               #NOTE could introduce brackets/dims
+      if (length(qnmz)>0) {               #NOTE could introduce brackets/dims
         tmp5 <- paste0(qnmz,'<- user()')
-      } else {tmp5 <- NULL;}
+      } else {
+        tmp5 <- NULL}
       tmp <- c(tmp1,tmp2,tmp3,tmp4,tmp5)
       qntz <- c(qntz,tmp)
     }
   }
-
+  
   ## make odin equations
   EQNS <- c(DFU$inits,DFU$dyx)
   EQNS <- c(imp,EQNS) #add in parameters
-  EQNS <- c(EQNS,dmzbit)                         #dimension statements
+  EQNS <- c(EQNS,dmzbit)                       #dimension statements
   EQNS <- c(EQNS,qntz)                         #aux quantities
-
+  
   ## return value
-  list(odata=(DFU),pmz=pmz,EQNS=EQNS)
+  list(odata = (DFU),
+       pmz = pmz,
+       EQNS = EQNS)
 }

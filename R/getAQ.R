@@ -6,7 +6,7 @@
 ##' object containing probability variables as \code{p}. The quantity to be averaged
 ##' over must be a node attribute \code{qnt}, which defaults as \code{cost}.
 ##' 
-##' @param node a \code{data.tree} object that must contain a probability field \code{p}
+##' @template args-node
 ##' @param qnt 
 ##' @return \code{string} to be evaluated in calculations
 ##' @author Pete Dodd

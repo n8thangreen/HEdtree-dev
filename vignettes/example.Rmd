@@ -1,5 +1,5 @@
 ---
-title: "Example"
+title: "Basic Example"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example}
@@ -14,9 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r tree-diagram, echo=FALSE, fig.cap="", out.width = '80%'}
+knitr::include_graphics("figures/tree_diagram.png")
+```
+
 We can load in a tree structure as a text file.
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 library(HEdtree)
 
 Dx <- txt2tree('inst/Dx.txt')
@@ -98,12 +102,18 @@ print(Dx,'p','treatments','deaths')
 ```
 
 ```{r}
-## make functions
+## make tree functions
 qnts <- c('p','check','deaths','treatments')
 tree_fns <- makeTfuns(Dx, qnt=qnts)
 str(tree_fns)
+```
 
-## quantity example:
+$$
+c_0 + p_{screen} (c_{screen} + p_{test} (c_{test} + CFR_{Tx} c_{CFR} + (1 - CFR_{Tx})c_{nCFR})) \cdots
+$$
+
+```{r}
+## quantity example
 getAQ(Dx, 'deaths')
 
 ## get the variables

@@ -28,22 +28,21 @@ showParmz <- function(node, parmz=c('cost','p','qol')){
 }
 
 
-##' Fetches the parameters used in the model for use in testing.
+##' List the parameters used in the model for use in testing
 ##'
-##' @title List parameters in model
-##' @param node 
-##' @return \code{vector} of  unique basic parameters
+##' @param TREE 
+##' @return \code{vector} of unique basic parameters
 ##' @author Pete Dodd
 ##' @export
-showAllParmz <- function(TREE){
+showAllParmz <- function(TREE) {
   B <- showParmz(TREE)
   ## get calx
   cx <- B$calcs
   cx <- gsub("\\*|\\+|-|\\/|\\(|\\)"," ",cx)
-  cx <- paste(cx,collapse=" ")
-  cx <- strsplit(cx,split=" ")[[1]]
-  cx <- cx[cx!=""]
-  cx <- cx[cx!="1"]
+  cx <- paste(cx, collapse = " ")
+  cx <- strsplit(cx, split = " ")[[1]]
+  cx <- cx[cx != ""]
+  cx <- cx[cx != "1"]
   ## get non calcs
   cx <- c(cx,B$vars)
   unique(cx)
@@ -51,18 +50,18 @@ showAllParmz <- function(TREE){
 
 ##' Makes a dummy PSA dataset based on a set of parameters for function testing
 ##'
-##' @title List parameters in model
-##' @param node 
+##' @param ncheck
+##' @param vnames 
 ##' @return \code{data.frame} of dummy PSA for testing tree functions
 ##' @author Pete Dodd
 ##' @export
-makeTestData <- function(ncheck,vnames){
+makeTestData <- function(ncheck, vnames){
   A <- data.table::data.table(vnames,value=runif(length(vnames)))
   A <- A[rep(1:length(vnames),each=ncheck)]
   idz <- rep(1:ncheck,length(vnames))
   A$id <- idz
   A$value <- runif(nrow(A))
-  data.table::dcast(A,id~vnames,value.var = 'value')
+  data.table::dcast(A, id ~ vnames, value.var = 'value')
 }
 ## TODO document risks etc - runifs
 ## ensure that data.table dependency supplied

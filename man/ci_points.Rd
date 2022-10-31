@@ -5,7 +5,7 @@
 \alias{midpnt}
 \alias{lopnt}
 \alias{hipnt}
-\title{Confidence interval low, mid and high points}
+\title{Utility functions for confidence interval low, mid and high points}
 \usage{
 midpnt(x)
 
@@ -20,16 +20,19 @@ hipnt(x)
 numeric
 }
 \description{
-`midpnt()` returns the midpoint from CIs. Utility function
-for extracting midpoint from bracketed uncertainty ranges.
+`midpnt()` returns the midpoint from CIs. 
 
-`lopnt()` returns the low point from CIs. Utility function
-for extracting low point from bracketed uncertainty ranges.
+`lopnt()` returns the low point from CIs.
 
-`hipnt()` returns the high point from CIs. Utility function
-for extracting high point from bracketed uncertainty ranges.
+`hipnt()` returns the high point from CIs.
 
+Extracts from bracketed uncertainty ranges.
 Expects something like M (Mlo,Mhi) or M (Mlo - Mhi).
+}
+\examples{
+midpnt("1 (0,2)")
+hipnt("1 (0-200)")
+lopnt("0 (-1,2)")  ##TODO: error
 }
 \author{
 Pete Dodd

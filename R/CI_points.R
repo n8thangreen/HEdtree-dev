@@ -1,25 +1,25 @@
 
 #' @name ci_points
-#' @title Confidence interval low, mid and high points
+#' @title Utility functions for confidence interval low, mid and high points
 #' 
 #' @description 
-#' `midpnt()` returns the midpoint from CIs. Utility function
-#' for extracting midpoint from bracketed uncertainty ranges.
+#' `midpnt()` returns the midpoint from CIs. 
 #' 
-#' `lopnt()` returns the low point from CIs. Utility function
-#' for extracting low point from bracketed uncertainty ranges.
+#' `lopnt()` returns the low point from CIs.
 #' 
-#' `hipnt()` returns the high point from CIs. Utility function
-#' for extracting high point from bracketed uncertainty ranges.
+#' `hipnt()` returns the high point from CIs.
 #' 
+#' Extracts from bracketed uncertainty ranges.
 #' Expects something like M (Mlo,Mhi) or M (Mlo - Mhi).
-#' 
-#' 
-#' 
+#'
 #' @param x Confidence interval string 
 #' @return numeric
 #' @author Pete Dodd
 #' @export
+#' @examples
+#' midpnt("1 (0,2)")
+#' hipnt("1 (0-200)")
+#' lopnt("0 (-1,2)")  ##TODO: error
 
 
 #' @rdname ci_points

@@ -22,3 +22,4 @@ plotter <- function(node, varz=c('name','cost','qol'), edgelabel = TRUE) {
   SetGraphStyle(node, rankdir = "LR")
   plot(node)
 }
+

@@ -3,8 +3,8 @@
 ##' It separates those which are basic and require separate definition
 ##' from those that are specified via calculations.
 ##'
-##' @param node 
-##' @param parmz 
+##' @param node Node
+##' @param parmz Parameters
 ##' @return \code{list} of length 2: unique basic parameters & unique calculation-defined parameters
 ##' @author Pete Dodd
 ##' @export
@@ -30,7 +30,7 @@ showParmz <- function(node, parmz=c('cost','p','qol')){
 
 ##' List the parameters used in the model for use in testing
 ##'
-##' @param TREE 
+##' @param TREE Tree
 ##' @return \code{vector} of unique basic parameters
 ##' @author Pete Dodd
 ##' @export

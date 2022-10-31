@@ -10,6 +10,7 @@
 ##' @param qnt 
 ##' @return \code{string} to be evaluated in calculations
 ##' @author Pete Dodd
+##' @seealso \link{\code{makeTfuns}}
 ##' @export
 ##' 
 getAQ <- function(node, qnt='cost') {

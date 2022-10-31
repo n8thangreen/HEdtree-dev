@@ -9,6 +9,7 @@
 ##' @param qnt 
 ##' @return A \code{list} of functions
 ##' @author Pete Dodd
+##' @seealso \link{\code{getAQ}}
 ##' @export
 ##' @examples
 #' tree_fns <- makeTfuns(Dx, qnt=qnts)

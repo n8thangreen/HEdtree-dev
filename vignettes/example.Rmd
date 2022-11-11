@@ -3,8 +3,10 @@ title: "Basic Example"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -32,7 +34,6 @@ Treatment tree version.
 
 ```{r}
 library(data.tree)
-
 
 # create new tree objects
 Tx <- Node$new('treated')
@@ -95,8 +96,11 @@ CD <- read.csv(here::here('inst/Dx1.csv')) #the edited version
 ##   ## TODO
 ## }
 
-Dx$Set(p=CD$p)
-Dx$Set(treatments=CD$treatments)
+# Dx$Set(p = CD$p)
+# Dx$Set(treatments = CD$treatments)
+
+dat <- CD[, c("treatments", "p")]
+do.call(Set, c(nodes = list(Traverse(Dx)), dat))
 
 print(Dx,'p','treatments','deaths')
 ```
